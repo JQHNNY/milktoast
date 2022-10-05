@@ -4,7 +4,56 @@
 
 {% block body %}
     <style>
+        body {
+            min-height: 100vh;
+            background-image:radial-gradient(100% 100% at 50% 100%, #feb2b2 0%, rgba(252, 184, 219, 0.75) 25%, rgba(239, 194, 250, 0.5) 50%, rgba(190, 227, 248, 0) 100%), linear-gradient(90deg, #3182ce 0%, #348fc5 14.29%, #389ac2 28.57%, #3ca5c1 42.86%, #41b0c2 57.14%, #45bbc3 71.43%, #4fd1c5 100%)
+        }
+        .home-image {
+            width: 60% !important;
+            border: 10px solid white;
+            border-radius: 5px;
+        }
+        .blob {
+        }
+        h2 {
+            font-size: 6em;
+        }
+        h1 {
+            font-size: 7em;
+        }
+        .headline-text {
+            padding-top: 10em;
+            text-transform: uppercase;
+            padding-left: 2em;
+            font-family: 'Noto Sans', sans-serif;
+            color: white;
+        }
+        .browse-btn {
+            margin-left: 1em;
+            font-size: 3em;
+            padding: 0 1em;
+            font-family: 'Noto Sans', sans-serif;
+            text-transform: uppercase;
+            border: 5px solid white;
+            color: white;
+        }
+
     </style>
     <div>
+        <div class="row">
+            <div class="col background">
+                <div class="headline-text">
+                    <h2>Milktoasts</h2>
+                    <h1>Art webshop</h1>
+                </div>
+                    <button type="button" class="btn btn-outline-dark browse-btn mt-5">Browse</button>
+            </div>
+            <div class="col">
+                <div class="blob">
+                    <img src="{{ asset('build/images/dexter.jpg') }}" class="img-fluid align-content-center home-image" alt="dexter">
+                </div>
+            </div>
+        </div>
     </div>
+
 {% endblock %}
