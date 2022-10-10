@@ -1,34 +1,24 @@
 {% block body %}
     <style>
-        .menu {
-        background-color: whitesmoke;
-        }
-        .menu li a {
-            color: black;
-            text-transform: uppercase;
-            font-family: 'Noto Sans', sans-serif;
-            font-weight: bolder;
-            padding : 1.5em
-        }
-        .menu li a:hover {
-            color: white;
-            text-transform: uppercase;
-            text-decoration: underline;
-            font-family: 'Noto Sans', sans-serif;
-            font-weight: bolder;
-        }
-
     </style>
-    <ul class="nav menu">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ path(('home')) }}">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Catalog</a>
-        </li>
-    </ul>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('home') }}">BeiBao</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Menu</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}

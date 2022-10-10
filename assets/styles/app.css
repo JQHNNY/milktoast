@@ -1,7 +1,14 @@
 @import "../../node_modules/bootstrap";
-body {
-    background-color: white;
-    color : #292b2c
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+    color: #292b2c;
+    text-shadow: none;
+}
+
+.cover-container {
+    max-width: 42em;
 }
 
 

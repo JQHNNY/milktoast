@@ -5,69 +5,40 @@
 {% block body %}
     <style>
         body {
-            min-height: 100vh;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1025%26quot%3b)' fill='none'%3e%3cpath d='M929.91 896.59a53.67 53.67 0 1 0-7.84-107.05z' fill='rgba(0%2c 109%2c 28%2c 1)'%3e%3c/path%3e%3cpath d='M1071.06 193.42L1105.57 193.42L1105.57 227.93L1071.06 227.93z' fill='rgba(0%2c 109%2c 28%2c 1)'%3e%3c/path%3e%3cpath d='M994.33 1002.39L1071.44 1002.39L1071.44 1079.5L994.33 1079.5z' fill='%23037b0b'%3e%3c/path%3e%3cpath d='M440.67 586.65a32.04 32.04 0 1 0-7.31 63.67z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M1439.86 772.83L1452.97 772.83L1452.97 793.71L1439.86 793.71z' stroke='rgba(0%2c 109%2c 28%2c 1)'%3e%3c/path%3e%3cpath d='M463.78 701.65 a3.86 3.86 0 1 0 7.72 0 a3.86 3.86 0 1 0 -7.72 0z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M1269.4 185.11L1375.94 185.11L1375.94 290.93L1269.4 290.93z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M237.85 538.37L281.28 538.37L281.28 581.8L237.85 581.8z' stroke='rgba(0%2c 109%2c 28%2c 1)'%3e%3c/path%3e%3cpath d='M1559.97 874.71L1654.65 874.71L1654.65 945.49L1559.97 945.49z' fill='%23d3b714'%3e%3c/path%3e%3cpath d='M596.15 19.07L673.56 19.07L673.56 96.48L596.15 96.48z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M1221.11 57.74L1238.91 57.74L1238.91 83.36L1221.11 83.36z' fill='%23d3b714'%3e%3c/path%3e%3cpath d='M1049.92 475.89 a13.99 13.99 0 1 0 27.98 0 a13.99 13.99 0 1 0 -27.98 0z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M1262.46-36.3a106.78 106.78 0 1 0-192.86 91.71z' stroke='rgba(0%2c 109%2c 28%2c 1)'%3e%3c/path%3e%3cpath d='M938.04 541.1L955.98 541.1L955.98 559.04L938.04 559.04z' stroke='%23037b0b'%3e%3c/path%3e%3cpath d='M921.61 262.14L925.08 262.14L925.08 265.61L921.61 265.61z' fill='%23d3b714'%3e%3c/path%3e%3cpath d='M1272.26 270.46a29.18 29.18 0 1 0 58.24-3.62z' fill='rgba(0%2c 109%2c 28%2c 1)'%3e%3c/path%3e%3cpath d='M753.69 951.32 a1.05 1.05 0 1 0 2.1 0 a1.05 1.05 0 1 0 -2.1 0z' stroke='%23037b0b'%3e%3c/path%3e%3cpath d='M184.52 140.39L232.11 140.39L232.11 187.98L184.52 187.98z' fill='%23037b0b'%3e%3c/path%3e%3cpath d='M982.29 1001.24L1084.48 1001.24L1084.48 1103.43L982.29 1103.43z' fill='%23d3b714'%3e%3c/path%3e%3cpath d='M1619.79 745.56L1634.34 745.56L1634.34 760.11L1619.79 760.11z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M268.42 8.55 a14.16 14.16 0 1 0 28.32 0 a14.16 14.16 0 1 0 -28.32 0z' stroke='%23037b0b'%3e%3c/path%3e%3cpath d='M355.78 800.73L442.97 800.73L442.97 893.94L355.78 893.94z' stroke='%23037b0b'%3e%3c/path%3e%3cpath d='M445.46 88.02L466.91 88.02L466.91 175.23L445.46 175.23z' stroke='rgba(0%2c 109%2c 28%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1025'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+            background-image:    url({{ asset('build/images/cover.jpg') }});
+            background-size:     cover;                      /* <------ */
+            background-repeat:   no-repeat;
+            background-position: center center;              /* optional, center the image */
         }
-
-        * {
-            margin: 0;
-            padding: 0;
+        main {
+            position: absolute;
+            top: 50%;
+            left:50%;
+            transform:translate(-50%, -50%);
+            -webkit-transform:translate(-50%, -50%);
+            -moz-transform:translate(-50%, -50%);
         }
-
-        .home-image {
-            width: 40% !important;
-            border-radius: 5px;
-            margin: 2em;
-        }
-
-        .candy-image {
-            width: 25% !important;
-            border-radius: 5px;
-        }
-
-        h2 {
-            font-size: 4em;
-        }
-
-        h1 {
-            font-size: 5em;
-        }
-
-        .headline-text {
-            font-family: 'Noto Sans', sans-serif;
-        }
-
-        .browse-btn {
-            font-size: 2em;
-            font-family: 'Noto Sans', sans-serif;
-            border: 2px solid #292b2c;
-            font-weight: bold;
-        }
-
-        .row {
-            --bs-gutter-x: 0 !important;
-        }
-        .card {
-            border : 0px solid #292b2c !important;
+        main h1,p {
+            color: white;
+            text-shadow: 2px 2px 4px #000000;
         }
 
     </style>
-    <div class="container">
-        <div class="card border-dark mt-5">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="card-body text-dark headline-text">
-                        <h2>Milktoasts</h2>
-                        <h1>Art webshop</h1>
-                        <button type="button" class="btn btn-outline-dark browse-btn mt-3">Browse</button>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <img src="{{ asset('build/images/dexter.jpg') }}" class="home-image" alt="dexter">
-                    <img src="{{ asset('build/images/candy.jpg') }}" class="candy-image" alt="candy">
-                </div>
-            </div>
-        </div>
+    <body class="d-flex text-center vh-100 d-flex w-100 h-100 mx-auto flex-column">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column align-middle">
+        <main class="px-3">
+            <h1>BeiBao</h1>
+            <p class="lead">BeiBao is a Chinese takeaway service and is located in the centre of Leuven</p>
+            <p class="lead">
+                <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">View menu</a>
+            </p>
+        </main>
+
+        <footer class="mt-auto">
+            <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a
+                        href="https://twitter.com/mdo">@mdo</a>.</p>
+        </footer>
     </div>
+    </body>
 
 {% endblock %}

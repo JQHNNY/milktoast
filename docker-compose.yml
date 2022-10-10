@@ -2,15 +2,16 @@ version: '3'
 
 services:
   database:
-    image: postgres:13.8
+    image: mysql:8.0
     ports:
-      - 61500:5432
+      - 3306:3306
     environment:
-      POSTGRES_DB: milktoast
-      POSTGRES_PASSWORD: kiyari21
-      POSTGRES_USER: admin
+      MYSQL_DATABASE: beibao
+      MYSQL_PASSWORD: kiyari21
+      MYSQL_ROOT_PASSWORD: kiyari21
+      MYSQL_USER: admin
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
+      - db-data:/var/lib/mysql
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
