@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProductFormType extends AbstractType
 {
@@ -16,7 +17,10 @@ class ProductFormType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('price')
-            ->add('thumbnail')
+            ->add('imageFile', VichImageType::class, [
+                'download_uri' => false,
+                'image_uri' => false,
+            ])
             ->add('save', SubmitType::class)
         ;
     }

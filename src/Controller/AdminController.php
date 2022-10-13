@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Form\ProductFormType;
 
+use App\Repository\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,15 +15,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     #[Route('/admin', name: 'admin')]
-    public function index(): Response
+    public function index(ProductRepository $productRepository): Response
     {
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+            'products' => $productRepository->findAll()
         ]);
     }
 
     #[Route('/admin/product/add', name: 'addProduct')]
-    public function addProduct(Request $request, ManagerRegistry $doctrine): Response
+    public function addProduct(Request $request, ManagerRegistry $doctrine, ProductRepository $productRepository): Response
     {
         $entityManager = $doctrine->getManager();
         $product = new Product();
@@ -35,14 +36,52 @@ class AdminController extends AbstractController
             $product->setName($productFormData['product_form']['name']);
             $product->setDescription($productFormData['product_form']['description']);
             $product->setPrice($productFormData['product_form']['price']);
-            $product->setThumbnail($productFormData['product_form']['thumbnail']);
 
             $entityManager->persist($product);
 
             $entityManager->flush();
+            return $this->redirectToRoute('admin');
         }
         return $this->renderForm('admin/product/add.html.twig', [
             'form' => $form
         ]);
+    }
+
+    #[Route('/admin/product/update/{id}', name: 'updateProduct')]
+    public function updateProduct(Request $request, ManagerRegistry $doctrine, ProductRepository $productRepository): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $product = $productRepository->getProductById($request->get('id'));
+
+        $form = $this->createForm(ProductFormType::class, $product);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $productFormData = $request->request->all();
+            $product->setName($productFormData['product_form']['name']);
+            $product->setDescription($productFormData['product_form']['description']);
+            $product->setPrice($productFormData['product_form']['price']);
+
+            $entityManager->persist($product);
+
+            $entityManager->flush();
+            return $this->redirectToRoute('admin');
+        }
+        return $this->renderForm('admin/product/add.html.twig', [
+            'product' => $product,
+            'form' => $form
+        ]);
+    }
+
+    #[Route('/admin/product/delete/{id}', name: 'deleteProduct')]
+    public function deleteProduct(Request $request, ManagerRegistry $doctrine, ProductRepository $productRepository): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $product = $productRepository->getProductById($request->get('id'));
+
+        $entityManager->remove($product);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin');
     }
 }
