@@ -3,13 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Form\AddToCartType;
 use App\Form\ProductFormType;
 
+use App\Manager\CartManager;
 use App\Repository\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
@@ -83,5 +86,35 @@ class AdminController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('admin');
+    }
+
+    #[Route('/admin/product/detail/{id}', name: 'detailProduct')]
+    public function detail(Request $request, ProductRepository $productRepository, CartManager $cartManager): Response
+    {
+        $product = $productRepository->getProductById($request->get('id'));
+
+        $form = $this->createForm(AddToCartType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $item = $form->getData();
+            $item->setProduct($product);
+
+            $cart = $cartManager->getCurrentCart();
+            $cart
+                ->addItem($item)
+                ->setUpdatedAt(new \DateTime());
+
+            $cartManager->save($cart);
+
+            return $this->redirectToRoute('detailProduct', ['id' => $product->getId()]);
+        }
+
+        return $this->renderForm('admin/product/detail.html.twig', [
+            'product' => $product,
+            'form' => $form
+        ]);
+
     }
 }

@@ -1,7 +1,20 @@
+
 {% block submit_widget %}
     <button type="submit" id="product_form_save" name="product_form[save]" class="btn-dark btn">Save</button>
 {% endblock %}
 
-{#{% block _product_form_thumbnail_widget %}#}
-{#    <input type="file" id="product_form_thumbnail" name="product_form[thumbnail]" required="required" maxlength="255" class="form-control">#}
-{#{% endblock %}#}
+{% block quantity_orderItem_widget %}
+    <button type="submit" id="add_to_cart_add" name="add_to_cart[add]" class="btn-dark btn">Add to cart</button>
+{% endblock %}
+
+{% block btn_save_widget %}
+    <button type="submit" id="cart_save" name="cart[save]" class="btn-warning btn">Save</button>
+{% endblock %}
+
+{% block btn_clear_widget %}
+    <button type="submit" id="cart_clear" name="cart[clear]" class="btn-light btn">Clear</button>
+{% endblock %}
+
+{% block btn_remove_widget %}
+    <button type="submit" id="cart_items_0_remove" name="cart[items][0][remove]" class="btn btn-dark btn-sm">Remove</button>
+{% endblock %}

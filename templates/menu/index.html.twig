@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu{% endblock %}
+
+{% block body %}
+    <style>
+        .product-child {
+            width: calc(25% - 1em);
+            margin-left: 1em;
+            margin-top: 1em;
+        }
+
+        @media (max-width: 991.98px) {
+            .product-child {
+                width: calc(50% - 1em);
+                margin-left: 1em;
+                margin-top: 1em;
+            }
+        }
+        @media (max-width: 767.98px) {
+            .product-child {
+                width: calc(100% - 1em);
+                margin-left: 1em;
+                margin-top: 1em;
+            }
+        }
+    </style>
+    <div class="container">
+        <div class="d-flex flex-wrap">
+            {% for product in products %}
+                <div class="card product-child">
+                    <img class="card-img-top img-fluid" width="100%" height="200px"
+                         src="{{ asset('images/products/') ~ product.thumbnail }}" alt="{{ product.thumbnail }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <a href="{{ url('detailProduct', {'id': product.id}) }}" class="">Select quantity</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}
