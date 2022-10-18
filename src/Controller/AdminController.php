@@ -108,7 +108,7 @@ class AdminController extends AbstractController
 
             $cartManager->save($cart);
 
-            return $this->redirectToRoute('detailProduct', ['id' => $product->getId()]);
+            return $this->redirectToRoute('menu');
         }
 
         return $this->renderForm('admin/product/detail.html.twig', [

@@ -4,10 +4,29 @@
 
 {% block body %}
     <style>
+        @media (max-width: 991.98px) {
+
+        }
+
+        @media (max-width: 767.98px) {
+            .detail-row {
+                flex-direction: column;
+            }
+        }
     </style>
 
     <div class="container">
-        <h1 class="mt-3">{{ product.name }}</h1>
-        {{ form(form) }}
+        <div class="d-flex detail-row">
+            <div class="w-100 m-3">
+                <img class="card-img-top img-fluid product-img"
+                     src="{{ asset('images/products/') ~ product.thumbnail }}" alt="{{ product.thumbnail }}">
+            </div>
+            <div class="w-100 m-3 p-3">
+                <h2 class="mt-3">{{ product.name }}</h2>
+                <h3 class="mt-3">{{ product.description }}</h3>
+                <h2 class="mt-3">€ {{ product.price }}</h2>
+                {{ form(form) }}
+            </div>
+        </div>
     </div>
 {% endblock %}
