@@ -88,7 +88,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin');
     }
 
-    #[Route('/admin/product/detail/{id}', name: 'detailProduct')]
+    #[Route('/product/detail/{id}', name: 'detailProduct')]
     public function detail(Request $request, ProductRepository $productRepository, CartManager $cartManager): Response
     {
         $product = $productRepository->getProductById($request->get('id'));
