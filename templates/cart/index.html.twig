@@ -31,8 +31,8 @@
                                              width="200px" alt="Product image">
                                     </div>
                                     <div class="flex-fill mr-2">
-                                        <h5 class="mt-0 mb-0">{{ item.vars.data.product.name }}</h5>
-                                        <small>{{ item.vars.data.product.description[:50] }}</small>
+                                        <h5 class="mt-0 mb-0 fw-bold">{{ item.vars.data.product.name }}</h5>
+                                        <small class="text-muted">{{ item.vars.data.product.description[:50] }}</small>
                                         <div class="form-inline mt-4 d-flex">
                                             <div class="form-group">
                                                 {{ form_widget(item.quantity, {
@@ -50,7 +50,7 @@
                                         </div>
                                     </div>
                                     <div class="flex-fill text-end mr-2">
-                                        <h3><b>{{ item.vars.data.product.price }} €</b></h3>
+                                        <h4><b>{{ item.vars.data.product.price }} €</b></h4>
                                     </div>
                                 </li>
                             {% endfor %}
@@ -65,7 +65,7 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between">
                                 <div><b>Total</b></div>
-                                <span><b>{{ cart.total }} €</b></span>
+                                <span><h3 class="fw-bolder">{{ cart.total }} €</h3></span>
                             </li>
                         </ul>
                         <div class="card-body">

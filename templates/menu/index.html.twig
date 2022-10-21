@@ -36,6 +36,18 @@
             }
         }
     </style>
+
+    <section class="py-5 text-center container">
+        <div class="row py-lg-2">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1>General info</h1>
+                <p class="lead">Our menu changes weekly.</p>
+                <p class="lead">Every order is ready for pickup on Friday at our pickup location located in <strong>Windmolenveldstraat 64, 3000 Leuven (right door)</strong>.</p>
+                <p class="lead">When your order payment is confirmed you can choose a timeframe between 12:00 - 19:00 for pickup.</p>
+            </div>
+        </div>
+    </section>
+
     <div class="container">
         <h1 class="m-3">This weeks menu</h1>
         {% set cartQuantity = 0 %}
@@ -50,8 +62,8 @@
                     <img class="card-img-top img-fluid product-img"
                          src="{{ asset('images/products/') ~ product.thumbnail }}" alt="{{ product.thumbnail }}">
                     <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text text-wrap">{{ product.description }}</p>
+                        <h5 class="card-title fw-bold">{{ product.name }}</h5>
+                        <p class="card-text text-wrap text-muted">{{ product.description }}</p>
                     </div>
                     <div class="card-footer">
                         <a href="{{ url('detailProduct', {'id': product.id}) }}"
