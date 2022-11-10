@@ -5,6 +5,13 @@ monolog:
 when@dev:
     monolog:
         handlers:
+            file_log:
+                type: stream
+                # log to var/log/(environment).log
+                path: "%kernel.logs_dir%/logs.log"
+                # log *all* messages (debug is lowest level)
+                level: info
+
             main:
                 type: stream
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
