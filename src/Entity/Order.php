@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Order
 {
     const STATUS_CART = 'cart';
+    const STATUS_PAID = 'paid';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

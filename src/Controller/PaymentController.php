@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Manager\CartManager;
+use     App\Manager\CartManager;
 use Stripe\Checkout\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,16 +47,28 @@ class PaymentController extends AbstractController
             'payment_method_types' => ['card'],
             'line_items'           => $line_items,
             'mode' => 'payment',
-            'success_url' => $this->generateUrl('success_url', ['test' => 'ywa'], UrlGeneratorInterface::ABSOLUTE_URL),
-            'cancel_url' => $this->generateUrl('cancel_url', ['test' => 'ywa'], UrlGeneratorInterface::ABSOLUTE_URL),
+            'success_url' => $this->generateUrl('success_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            'cancel_url' => $this->generateUrl('cancel_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
         ]);
         return $this->redirect($session->url, 303);
     }
 
     #[Route('/success-url', name: 'success_url')]
-    public function successUrl(Request $request): Response
+    public function successUrl(Request $request, CartManager $cartManager): Response
     {
-        dd($request->get('test'));
+        $cartItems = $cartManager->getCurrentCart()->getItems();
+        $itemsOrdered = [];
+        foreach ($cartItems as $cartItem) {
+            $name = $cartItem->getProduct()->getName();
+            $quantity = $cartItem->getQuantity();
+            $image = $cartItem->getProduct()->getThumbnail();
+            $total = $cartItem->getTotal();
+            $itemsOrdered[] =
+                [
+                'name' => $name
+                ];
+        }
+        dd($itemsOrdered);
         return $this->render('payment/success.html.twig', []);
     }
 
@@ -64,7 +76,6 @@ class PaymentController extends AbstractController
     #[Route('/cancel-url', name: 'cancel_url')]
     public function cancelUrl(Request $request): Response
     {
-        dd($request->get('test'));
         return $this->render('payment/cancel.html.twig', []);
     }
 }
